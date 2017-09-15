@@ -28,6 +28,19 @@
         margin-right: 10px;
     text-align: right;
 }
+.ap-questions-featured {
+    margin-left: -10px;
+    border: medium none;
+    color: #ff951e;
+    display: inline;
+    font-size: 16px;
+    height: auto;
+    margin-right: 5px;
+    padding: 0;
+    position: static;
+    vertical-align: baseline;
+    width: auto;
+}
 </style>
 @stop('admin.stylesheet')
 @section('admin.content')
@@ -140,7 +153,9 @@
                         รอบเช้า
                         @endif
                       </td>
-                      <td>{{$u->name}}</td>
+                      <td>  @if($u->star_user == 1)
+                        <i class="ap-questions-featured fa fa-graduation-cap"></i>
+                        @endif {{$u->name}}</td>
                       <td>{{$u->job_title}}</td>
                       <td><?=mb_substr(strip_tags($u->current_branch),0,32,'UTF-8')?></td>
                       <td><?=mb_substr(strip_tags($u->area),0,25,'UTF-8')?></td>
@@ -193,7 +208,9 @@
                            </div>
 
                             <div class="form-group">
-                              <label for="inputPassword3" class=" control-label"><b>ชื่อ-นามสกุล :</b> {{$u->name}}</label>
+                              <label for="inputPassword3" class=" control-label"><b>ชื่อ-นามสกุล :</b> @if($u->star_user == 1)
+                              <i class="ap-questions-featured fa fa-graduation-cap"></i>
+                              @endif {{$u->name}}</label>
                               <input type="hidden" class="form-control" id="name" value="{{$u->name}}">
                            </div>
 
@@ -222,7 +239,11 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="inputPassword3" class=" control-label"><b>หมายเหตุ :</b> {{$u->remark}}</label>
+                          <label for="inputPassword3" class=" control-label"><b>หมายเหตุ :</b> {{$u->remark}}
+                            @if($u->star_user == 1)
+                            <i class="ap-questions-featured fa fa-graduation-cap"></i> รายชื่อพิเศษ
+                            @endif
+                          </label>
 
                           <input type="hidden" id="id_user" class="form-control" name="id"   value="{{ $u->id }}" >
                         </div>
